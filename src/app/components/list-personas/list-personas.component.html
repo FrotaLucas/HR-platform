@@ -3,15 +3,19 @@
 </mat-toolbar>
 
 <mat-card class="example-card">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z15">
+  <mat-form-field appearence="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex name" #input autocomplete="on">
+  </mat-form-field>
 
+  <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z15">
     <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
       <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
     </ng-container>
 
     <ng-container matColumnDef="apellido">
-      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
       <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
     </ng-container>
 
@@ -35,9 +39,16 @@
       <td mat-cell *matCellDef="let element"> {{element.fechaNacimento | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let element"> <mat-icon>edit</mat-icon> </td>
+      <td mat-cell *matCellDef="let element"> <mat-icon>person_remove</mat-icon> </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-
 </mat-card>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" [length]="10" [pageSize]="5">
+</mat-paginator>
