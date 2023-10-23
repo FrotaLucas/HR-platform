@@ -25,7 +25,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
 
   //ache o componente MatPaginator e atribua ele a myCustomPaginator
   @ViewChild(MatPaginator) myCustomPaginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) myCustomSort!: MatSort;
 
   constructor(){
     this.dataSource = new MatTableDataSource(listPersonas)
@@ -41,7 +41,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.myCustomPaginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.myCustomSort;
     //this.dataSource.paginator._intl.itemsPerPageLabel = "items per pagina";
   }
   ngOnInit(): void {
