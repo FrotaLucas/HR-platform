@@ -1,8 +1,38 @@
 table {
   width: 100%;
+  margin-top: 50px;
 }
 
-.mat-form-field {
+/* .mat-form-field {
   font-size: 14px;
+  background-color: red;
+  
+} */
+
+.input {
   width: 100%;
+  font-size: 14px;
+  margin-right: 10px;
+
+  > div {
+    background-color: white;
+  }
+  
+}
+
+.btnEdit, .btnDelete {
+  cursor: pointer;
+}
+
+.btnDelete {
+  color: #E61204;
+}
+.btn {
+  width: 80px;
+}
+
+.container-filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
