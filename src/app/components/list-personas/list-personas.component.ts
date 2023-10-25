@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Persona } from 'src/app/interfaces/persona';
+import { AgregarEditarPersonaComponent } from '../agregar-editar-persona/agregar-editar-persona.component';
 
 const listPersonas: Persona[] = [
   {nombre: "Maria", apellido: "Loya", correo: "loyadiasMaria@hotmail.com", tipoDocumento: 'CNH', documento: 3333333, fechaNacimento: new Date() },
@@ -27,7 +29,9 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) myCustomPaginator!: MatPaginator;
   @ViewChild(MatSort) myCustomSort!: MatSort;
 
-  constructor(){
+  //ja que caixa de dialog-MatDialogModule chama diz respeito ao componente AgregarEditarPersonaComponent.
+  // pq ele esta sendo declarado aqui e nao em agregar-editar-persona??????
+  constructor(public dialog: MatDialog){
     this.dataSource = new MatTableDataSource(listPersonas)
   }
   applyFilter(event: Event){
@@ -37,6 +41,10 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
     if(this.dataSource.paginator){
       this.dataSource.paginator.firstPage()
     }
+  }
+  addEditPersona() {
+    const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true})
+    dialogRef.afterClosed().subscribe(result => { console.log('The dialog was closed')})
   }
 
   ngAfterViewInit(): void {
