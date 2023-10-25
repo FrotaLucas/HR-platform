@@ -1,1 +1,13 @@
-<p>agregar-editar-persona works!</p>
+<h2 mat-dialog-title>Agregar Persona</h2>
+<mat-dialog-content class="mat-typography">
+
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Ingrese Nombre">
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="methodCancell()" mat-button>Cancel</button>
+  <button mat-button cdkFocusInitial>Install</button>
+</mat-dialog-actions>
