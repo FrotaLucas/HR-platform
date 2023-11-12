@@ -29,10 +29,9 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) myCustomPaginator!: MatPaginator;
   @ViewChild(MatSort) myCustomSort!: MatSort;
 
-  // DUVIDA
-  //ja que caixa de dialog-MatDialogModule chamada diz respeito ao componente AgregarEditarPersonaComponent.
-  // pq ele esta sendo declarado aqui no parametro do constructor e nao em agregar-editar-persona??????
-  //ver componente addEditPersona()
+  // importante
+ // MatDialog eh uma classe que possui conjunto de metodos 
+ //MatDialogModule eh um conjunto de components and css style. Ex de componente: mat-dialog-actions
   constructor(public dialog: MatDialog){
     this.dataSource = new MatTableDataSource(listPersonas)
   }
@@ -45,7 +44,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //TEMTAR FAZER ESSE PREENCHIMENTO NO ARQUIVO Ts de AGREGAR EDITAR
+  //TEMTAR FAZER ESSE PREENCHIMENTO NO ARQUIVO Ts de AGREGAR EDITAR!!
   addEditPersona() {
     const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true})
     dialogRef.afterClosed().subscribe(result => { console.log('The dialog was closed')})
