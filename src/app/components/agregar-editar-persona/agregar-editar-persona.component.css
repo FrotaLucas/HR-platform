@@ -1,3 +1,17 @@
 mat-form-field{
   width: 100%;
 }
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  margin: 0 5px;
+}
+
+.error {
+  color: #B0304B;
+  font-size: 12px;
+}
