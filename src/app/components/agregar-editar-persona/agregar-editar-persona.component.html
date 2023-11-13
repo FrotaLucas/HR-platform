@@ -86,8 +86,7 @@
 
   <mat-dialog-actions align="end">
     <button type="button" (click)="methodCancell()" mat-button>Cancel</button>
-    <button type="submit" mat-button cdkFocusInitial>Aceptar</button>
-    <!-- <button [disabled]="myform.invalid" type="submit" mat-button cdkFocusInitial>Aceptar</button> -->
+    <button [disabled]="myform.invalid" type="submit" mat-button cdkFocusInitial>Aceptar</button>
   </mat-dialog-actions>
 
 </form>
