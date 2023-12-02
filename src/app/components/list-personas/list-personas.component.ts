@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Persona } from 'src/app/interfaces/persona';
 import { AgregarEditarPersonaComponent } from '../agregar-editar-persona/agregar-editar-persona.component';
+import { PersonaService } from 'src/app/services/persona.service';
 
 const listPersonas: Persona[] = [
   {nombre: "Maria", apellido: "Loya", correo: "loyadiasMaria@hotmail.com", tipoDocumento: 'CNH', documento: 3333333, fechaNacimento: new Date() },
@@ -32,9 +33,15 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   // importante
  // MatDialog eh uma classe que possui conjunto de metodos 
  //MatDialogModule eh um conjunto de components and css style. Ex de componente: mat-dialog-actions
-  constructor(public dialog: MatDialog){
-    this.dataSource = new MatTableDataSource(listPersonas)
+  constructor(public dialog: MatDialog, private _personaService: PersonaService){
+    this.dataSource = new MatTableDataSource()
   }
+  obtenerPersonas(){
+  this._personaService.getPersona().subscribe(data =>{
+  this.dataSource.data = data;
+  })
+  }
+
   applyFilter(event: Event){
     const filteredValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filteredValue.trim().toLowerCase();
@@ -56,6 +63,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
     //this.dataSource.paginator._intl.itemsPerPageLabel = "items per pagina";
   }
   ngOnInit(): void {
+    this.obtenerPersonas();
   }
 
 
