@@ -7,6 +7,8 @@ import { Persona } from 'src/app/interfaces/persona';
 import { AgregarEditarPersonaComponent } from '../agregar-editar-persona/agregar-editar-persona.component';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ProgressBarMode } from '@angular/material/progress-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 // const listPersonas: Persona[] = [
 //   {nombre: "Maria", apellido: "Loya", correo: "loyadiasMaria@hotmail.com", tipoDocumento: 'CNH', documento: 3333333, fechaNacimento: new Date() },
@@ -37,8 +39,9 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   // importante
  // MatDialog eh uma classe que possui conjunto de metodos 
  //MatDialogModule eh um conjunto de components and css style. Ex de componente: mat-dialog-actions
-  constructor(public dialog: MatDialog, private _personaService: PersonaService){
+  constructor(public dialog: MatDialog, private _personaService: PersonaService, private _snackBar: MatSnackBar){
     this.dataSource = new MatTableDataSource()
+  
   }
   obtenerPersonas(){
       this.loading = true;
@@ -70,8 +73,12 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   deletePerson(id: number){
     this.loading = true;
     this._personaService.deletePersona(id).subscribe(()=>{
-      this.obtenerPersonas()
+      this.obtenerPersonas();
+      this.msgSucess();
     })
+  }
+  msgSucess(){
+    this._snackBar.open('Persona eliminada com sucesso', '', {duration:2000})
   }
   ngAfterViewInit(): void {
     //1 entender melhor esse paginator. Pq tiranto ele mesmo assim ele aparece ?
