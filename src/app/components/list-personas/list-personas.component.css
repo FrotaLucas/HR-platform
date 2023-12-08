@@ -2,7 +2,7 @@ table {
   width: 100%;
   margin-top: 50px;
 }
-.mat-toolbar {
+mat-toolbar {
   background-color: white;
 }
 /* .mat-form-field {
