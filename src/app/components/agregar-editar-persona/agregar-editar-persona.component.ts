@@ -52,7 +52,7 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
         setTimeout(()=>{
           this.loading = false;
           console.log("Set Timeout agregar persona");
-          this.dialogRef.close();
+          this.dialogRef.close({submitted:true});//vai ser enviado para list-persona-componente
         }, 2000)
       }
       );
