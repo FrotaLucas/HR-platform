@@ -70,8 +70,14 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true});
     //com o retorno de dialogRed, podemos rezecutar obtenerPersonas ;)
     dialogRef.afterClosed().subscribe(result => { 
-      this.obtenerPersonas();//executa depois de fechar
-      console.log('The dialog was closed')});//SO FUNCIONA COM BOTAO CANCELAR
+      if(result && result.submitted){
+        this.obtenerPersonas();//executa depois de fechar
+        console.log('The dialog was closed')
+        console.log(result,result.submitted);
+      }
+    
+    });//SO FUNCIONA COM BOTAO CANCELAR
+      
   }
   //funciona o bar loading e settimeout
   deletePerson(id: number){
