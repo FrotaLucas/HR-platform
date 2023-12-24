@@ -20,10 +20,14 @@ export class PersonaService {
       //concatenacao da router 
       return this.http.get<Persona[]>(`${this.myAppUrl}${this.myApiUrl}`);
    }
-
+   //retorna Observable<void>
    deletePersona(id: number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
    }
 
+   addPersona(persona: Persona): Observable<void>{
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, persona)
+   }
+   
    
 }
