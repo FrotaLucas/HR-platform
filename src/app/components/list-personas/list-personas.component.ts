@@ -51,6 +51,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
         this.dataSource.data = data;
         this.dataSource.paginator = this.myCustomPaginator;
         this.dataSource.sort = this.myCustomSort;
+        console.log("print obtenerPersona")
           });
       }, 2000);
   }
@@ -66,15 +67,17 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
 
   //TEMTAR FAZER ESSE PREENCHIMENTO NO ARQUIVO Ts de AGREGAR EDITAR!!
   addEditPersona() {
-    const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true})
-    dialogRef.afterClosed().subscribe(result => { console.log('The dialog was closed')})
+    const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true});
+    //com o retorno de dialogRed, podemos rezecutar obtenerPersonas ;)
+    dialogRef.afterClosed().subscribe(result => { 
+      this.obtenerPersonas();//executa depois de fechar
+      console.log('The dialog was closed')});//SO FUNCIONA COM BOTAO CANCELAR
   }
-
+  //funciona o bar loading e settimeout
   deletePerson(id: number){
-    this.loading = true;
     this._personaService.deletePersona(id).subscribe(()=>{
-      this.obtenerPersonas();
-      this.msgSucess();
+    this.obtenerPersonas();
+    this.msgSucess();
     })
   }
   msgSucess(){
