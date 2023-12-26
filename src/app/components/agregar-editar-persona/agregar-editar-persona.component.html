@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 mat-dialog-title>Agregar Persona</h2>
+  <h2 mat-dialog-title>{{operation}} Persona</h2>
   <mat-spinner *ngIf="loading===true" [diameter]="30"></mat-spinner>
 </div>
 <form [formGroup]="myform" (ngSubmit)="addEditPersona()">
