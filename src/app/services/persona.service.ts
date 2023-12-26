@@ -16,7 +16,7 @@ export class PersonaService {
     this.myApiUrl = 'api/personas/';
    }
    //o que esta sendo retornado eh do tipo Observable<Persona[]> ? 
-   getPersona(): Observable<Persona[]>{
+   getPersonas(): Observable<Persona[]>{
       //concatenacao da router 
       return this.http.get<Persona[]>(`${this.myAppUrl}${this.myApiUrl}`);
    }
@@ -29,5 +29,5 @@ export class PersonaService {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, persona)
    }
    
-   
+
 }
