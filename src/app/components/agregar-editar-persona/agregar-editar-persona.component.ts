@@ -1,8 +1,10 @@
-import { OnInit, Component} from '@angular/core'
+import { OnInit, Component, Inject} from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Persona } from 'src/app/interfaces/persona';
 import { PersonaService } from 'src/app/services/persona.service';
+
 @Component({
   selector: 'app-agregar-editar-persona',
   templateUrl: './agregar-editar-persona.component.html',
@@ -13,8 +15,10 @@ tipoDocumento: string[] = [ "DNI", "Libreta Civica","Pasporte"];
 myform: FormGroup;
 maxDate: Date;
 loading: boolean = false;
+operation: string = "Agregar ";
+id: number | undefined;
 
-constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, private fb: FormBuilder, private _personService: PersonaService){
+constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, private fb: FormBuilder, private _personService: PersonaService, private _snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any){
   this.maxDate = new Date();
   this.myform = this.fb.group({
     nombre:['', [Validators.required, Validators.maxLength(20)]],
@@ -24,11 +28,23 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
     documento: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
     fechaNacimento: [null, Validators.required]
     });
+  this.id = data.id;
   }
   ngOnInit(): void {
+    this.esEditar(this.id);
+  }
+
+  esEditar(id: number | undefined){
+    if(id!== undefined){
+      this.operation = 'Editar';
+    }
   }
   methodCancell(){
     const dialogRef = this.dialogRef.close()  //pq precisa de uma const para receber this.dialogRef.close() ?
+  }
+
+  msgSucess(){
+    this._snackBar.open("Persona agregada com sucesso", '', {duration: 2000})
   }
   addEditPersona(){
     //return nothing in case there is any invalid information
@@ -37,12 +53,12 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
     }
 
     const persona: Persona = {
-      nombre: this.myform.value.nombre,
-      apellido: this.myform.value.apellido,
-      correo: this.myform.value.correo,
-      tipoDocumento: this.myform.value.tipoDocumento,
-      documento: this.myform.value.documento,
-      fechaNacimento: this.myform.value.fechaNacimento.toISOString().slice(0,10)
+    nombre: this.myform.value.nombre,
+    apellido: this.myform.value.apellido,
+     correo: this.myform.value.correo,
+    tipoDocumento: this.myform.value.tipoDocumento,
+    documento: this.myform.value.documento,
+    fechaNacimento: this.myform.value.fechaNacimento.toISOString().slice(0,10)   
     }    
     console.log(this.myform)
     //console.log(persona.fechaNacimento);
@@ -56,6 +72,6 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
         }, 2000)
       }
       );
-    
+    this.msgSucess();
     }
 }
