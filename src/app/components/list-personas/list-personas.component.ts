@@ -46,7 +46,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   obtenerPersonas(){
       this.loading = true;
       setTimeout(()=>{
-        this._personaService.getPersona().subscribe(data =>{
+        this._personaService.getPersonas().subscribe(data =>{
         this.loading = false
         this.dataSource.data = data;
         this.dataSource.paginator = this.myCustomPaginator;
@@ -59,27 +59,26 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event){
     const filteredValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filteredValue.trim().toLowerCase();
-
     if(this.dataSource.paginator){
       this.dataSource.paginator.firstPage()
     }
   }
 
   //TEMTAR FAZER ESSE PREENCHIMENTO NO ARQUIVO Ts de AGREGAR EDITAR!!
-  addEditPersona() {
-    const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true});
+  addEditPersona(id? : number) {
+    const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {width: "550px", disableClose: true, 
+    data: { id: id }});
     //com o retorno de dialogRed, podemos rezecutar obtenerPersonas ;)
     dialogRef.afterClosed().subscribe(result => { 
       if(result && result.submitted){
         this.obtenerPersonas();//executa depois de fechar
         console.log('The dialog was closed')
-        console.log(result,result.submitted);
       }
-    
     });//SO FUNCIONA COM BOTAO CANCELAR
       
   }
   //funciona o bar loading e settimeout
+  //como esse Id esta sendo lido se ele nao esta na tabela ????????
   deletePerson(id: number){
     this._personaService.deletePersona(id).subscribe(()=>{
     this.obtenerPersonas();
