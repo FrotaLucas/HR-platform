@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 //components
 import { AppComponent } from './app.component';
@@ -21,7 +22,9 @@ import { SharedModule } from './shared/shared.module';
     NoopAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [{
+    provide: MAT_DATE_LOCALE, useValue: 'pt'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
