@@ -33,11 +33,26 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
   ngOnInit(): void {
     this.esEditar(this.id);
   }
-
+  
+  //undefined : novo usuario, number : usuario existente
   esEditar(id: number | undefined){
     if(id!== undefined){
       this.operation = 'Editar';
+      this.getPersona(id);
     }
+  }
+
+  getPersona(id: number){
+    this._personService.getPersona(id).subscribe( data => {
+      //data aqui eh o retorno do backend. Metodo getPersona
+      this.myform.setValue({
+        nombre: data.nombre,
+        apellido: data.apellido,
+        correo: data.correo,
+        tipoDocumento: data.tipoDocumento,
+        documento: data.documento,
+        fechaNacimento: data.fechaNacimento,
+      })})
   }
   methodCancell(){
     const dialogRef = this.dialogRef.close()  //pq precisa de uma const para receber this.dialogRef.close() ?
@@ -55,12 +70,12 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
     const persona: Persona = {
     nombre: this.myform.value.nombre,
     apellido: this.myform.value.apellido,
-     correo: this.myform.value.correo,
+    correo: this.myform.value.correo,
     tipoDocumento: this.myform.value.tipoDocumento,
     documento: this.myform.value.documento,
     fechaNacimento: this.myform.value.fechaNacimento.toISOString().slice(0,10)   
     }    
-    console.log(this.myform)
+    //console.log(this.myform)
     //console.log(persona.fechaNacimento);
     this._personService.addPersona(persona).subscribe(
       ()=>{
