@@ -44,7 +44,7 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
 
   getPersona(id: number){
     this._personService.getPersona(id).subscribe( data => {
-      //data aqui eh o retorno do backend. Metodo getPersona
+      //data aqui eh o retorno do backend. Metodo getPersona. entao ele preenche o formulario
       this.myform.setValue({
         nombre: data.nombre,
         apellido: data.apellido,
@@ -58,8 +58,8 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
     const dialogRef = this.dialogRef.close()  //pq precisa de uma const para receber this.dialogRef.close() ?
   }
 
-  msgSucess(){
-    this._snackBar.open("Persona agregada com sucesso", '', {duration: 2000})
+  msgSucess(typeOperation: string){
+    this._snackBar.open(`Persona ${typeOperation} com sucesso`, '', {duration: 2000})
   }
   addEditPersona(){
     //return nothing in case there is any invalid information
@@ -77,16 +77,30 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
     }    
     //console.log(this.myform)
     //console.log(persona.fechaNacimento);
-    this._personService.addPersona(persona).subscribe(
-      ()=>{
+    if(this.id !== undefined){
+      this._personService.updatePersona(this.id, persona).subscribe(data=>{
         this.loading = true;
-        setTimeout(()=>{
-          this.loading = false;
-          console.log("Set Timeout agregar persona");
-          this.dialogRef.close({submitted:true});//vai ser enviado para list-persona-componente
+        //console.log(this.myform.value.fechaNacimento)
+        setTimeout( ()=>{
+          this.loading =false,
+          this.dialogRef.close({submitted: true})
         }, 2000)
-      }
-      );
-    this.msgSucess();
+      })
+      this.msgSucess('actualizada');
+      
+    }
+    else{
+      this._personService.addPersona(persona).subscribe(
+        ()=>{
+          this.loading = true;
+          setTimeout(()=>{
+            this.loading = false;
+            this.dialogRef.close({submitted:true});//vai ser enviado para list-persona-componente
+          }, 2000)
+        }
+        );
+        this.msgSucess('agregada');
+
+    }
     }
 }
