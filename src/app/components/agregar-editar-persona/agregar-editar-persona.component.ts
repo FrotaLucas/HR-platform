@@ -51,8 +51,11 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
         correo: data.correo,
         tipoDocumento: data.tipoDocumento,
         documento: data.documento,
-        fechaNacimento: data.fechaNacimento,
+        //lê o que ta escrito no formulario e ja converte para formato que o DB aceita
+        fechaNacimento: new Date(data.fechaNacimento)
       })})
+     
+
   }
   methodCancell(){
     const dialogRef = this.dialogRef.close()  //pq precisa de uma const para receber this.dialogRef.close() ?
@@ -100,7 +103,12 @@ constructor( public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>, priv
         }
         );
         this.msgSucess('agregada');
-
-    }
+        
+        setTimeout(()=>{
+          console.log(this.myform.value.fechaNacimento);
+        },1000)
+    
+    
+      }
     }
 }
