@@ -53,7 +53,7 @@
         <mat-form-field>
           <mat-label>TIPO DOCUMENTO</mat-label>
           <mat-select formControlName="tipoDocumento">
-            <mat-option *ngFor="let item of tipoDocumento" value="item">{{item}}</mat-option>
+            <mat-option *ngFor="let item of tipoDocumento" [value]="item">{{item}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
