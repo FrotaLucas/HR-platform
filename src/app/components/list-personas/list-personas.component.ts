@@ -10,16 +10,6 @@ import { ProgressBarMode } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
-// const listPersonas: Persona[] = [
-//   {nombre: "Maria", apellido: "Loya", correo: "loyadiasMaria@hotmail.com", tipoDocumento: 'CNH', documento: 3333333, fechaNacimento: new Date() },
-//   {nombre: "Fagner", apellido: "Melles", correo: "fafafagner@hotmail.com", tipoDocumento: 'CNH', documento: 1414141, fechaNacimento: new Date() },
-//   {nombre: "Jorge", apellido: "Paulo", correo: "jorge@hotmail.com", tipoDocumento: 'CNH', documento: 1414141, fechaNacimento: new Date() },
-//   {nombre: "Iago", apellido: "Ottilis", correo: "claudia@hotmail.com", tipoDocumento: 'CNH', documento: 1414141, fechaNacimento: new Date() },
-//   {nombre: "Grazi", apellido: "Carneiro", correo: "grazi@hotmail.com", tipoDocumento: 'CNH', documento: 1414141, fechaNacimento: new Date() },
-//   {nombre: "Lucas", apellido: "Frota", correo: "frotadiaslucas@hotmail.com", tipoDocumento: 'CNH', documento: 21212121, fechaNacimento: new Date() },
-//   {nombre: "Grazi", apellido: "Carneiro", correo: "grazi@hotmail.com", tipoDocumento: 'CNH', documento: 1414141, fechaNacimento: new Date() }
-// ];
-
 @Component({
   selector: 'app-list-personas',
   templateUrl: './list-personas.component.html',
