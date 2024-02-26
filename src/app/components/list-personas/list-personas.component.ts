@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -82,7 +90,7 @@ const listPersonas: Persona[] = [
   templateUrl: './list-personas.component.html',
   styleUrls: ['./list-personas.component.css'],
 })
-export class ListPersonasComponent implements OnInit, AfterViewInit {
+export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
   displayedColumns: string[] = [
     'nombre',
     'apellido',
@@ -104,7 +112,8 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private _personaService: PersonaService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar, // private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {
     this.personaManagement = new PersonaManagement(listPersonas);
     this.dataSource = new MatTableDataSource(
@@ -116,15 +125,25 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
   obtenerPersonas() {
     this.loading = true;
     setTimeout(() => {
-      this._personaService.getPersonas().subscribe((data) => {
-        this.loading = false;
-        this.dataSource.data = data;
-        this.dataSource.paginator = this.myCustomPaginator;
-        this.dataSource.sort = this.myCustomSort;
-        console.log('print obtenerPersona');
-      });
+      this.loading = false;
+      this.dataSource.data = [...this.personaManagement.getListPersona()];
+      this.dataSource.paginator = this.myCustomPaginator;
+      this.dataSource.sort = this.myCustomSort;
+      console.log('print obtenerPersona');
     }, 2000);
   }
+  // obtenerPersonas() {
+  //   this.loading = true;
+  //   setTimeout(() => {
+  //     this._personaService.getPersonas().subscribe((data) => {
+  //       this.loading = false;
+  //       this.dataSource.data = data;
+  //       this.dataSource.paginator = this.myCustomPaginator;
+  //       this.dataSource.sort = this.myCustomSort;
+  //       console.log('print obtenerPersona');
+  //     });
+  //   }, 2000);
+  // }
 
   applyFilter(event: Event) {
     const filteredValue = (event.target as HTMLInputElement).value;
@@ -158,13 +177,23 @@ export class ListPersonasComponent implements OnInit, AfterViewInit {
     // });
     console.log('click deleteee');
     this.personaManagement.deletePersona(id);
-    this.dataSource.data = [...this.personaManagement.getListPersona()];
+    //this.dataSource.data = [...this.personaManagement.getListPersona()];
+    this.dataSource._updateChangeSubscription();
+    this.cdr.detectChanges();
+    this.msgSucess();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('personaManagement' in changes) {
+      this.dataSource.data = [...this.personaManagement.getListPersona()];
+    }
   }
   msgSucess() {
     this._snackBar.open('Persona eliminada com sucesso', '', {
       duration: 2000,
     });
   }
+
   ngAfterViewInit(): void {
     //1 entender melhor esse paginator. Pq tiranto ele mesmo assim ele aparece ?
     this.dataSource.paginator = this.myCustomPaginator;
