@@ -177,9 +177,11 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
     // });
     console.log('click deleteee');
     this.personaManagement.deletePersona(id);
+    this.obtenerPersonas();
+    //console.log(this.personaManagement.getListPersona());
     //this.dataSource.data = [...this.personaManagement.getListPersona()];
-    this.dataSource._updateChangeSubscription();
-    this.cdr.detectChanges();
+    // this.dataSource._updateChangeSubscription();
+    // this.cdr.detectChanges();
     this.msgSucess();
   }
 

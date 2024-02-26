@@ -19,15 +19,14 @@ export class PersonaManagement {
   }
 
   deletePersona(id: number): void {
-    console.log('hellow deletePersona');
-
     this.listPersonas = this.listPersonas.filter(
       (persona) => persona.id !== id
     );
+    console.log(this.listPersonas);
   }
 
   getListPersona(): Persona[] {
-    console.log('hellow getList');
+    // console.log('hellow getList');
     return this.listPersonas;
   }
 }

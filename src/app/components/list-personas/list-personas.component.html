@@ -48,8 +48,8 @@
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef> Editar </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="addEditPersona(element.idpersona)" class="btnEdit" matTooltip="edit">edit</mat-icon>
-        <mat-icon (click)="deletePerson(element.idpersona)" class="btnDelete" matTooltip="delete">delete</mat-icon>
+        <mat-icon (click)="addEditPersona(element.id)" class="btnEdit" matTooltip="edit">edit</mat-icon>
+        <mat-icon (click)="deletePerson(element.id)" class="btnDelete" matTooltip="delete">delete</mat-icon>
       </td>
     </ng-container>
 
