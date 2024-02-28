@@ -96,22 +96,25 @@ export class AgregarEditarPersonaComponent implements OnInit {
     //console.log(this.myform)
     //console.log(persona.fechaNacimento);
     if (this.id !== undefined) {
-      this._personService.updatePersona(this.id, persona).subscribe((data) => {
-        this.loading = true;
-        //console.log(this.myform.value.fechaNacimento)
-        setTimeout(() => {
-          (this.loading = false), this.dialogRef.close({ submitted: true });
-        }, 2000);
-      });
+      // this._personService.updatePersona(this.id, persona).subscribe((data) => {
+      //   this.loading = true;
+      //   //console.log(this.myform.value.fechaNacimento)
+      //   setTimeout(() => {
+      //     (this.loading = false), this.dialogRef.close({ submitted: true });
+      //   }, 2000);
+      // });
       this.msgSucess('actualizada');
     } else {
-      this._personService.addPersona(persona).subscribe(() => {
-        this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-          this.dialogRef.close({ submitted: true }); //vai ser enviado para list-persona-componente
-        }, 2000);
-      });
+      // this._personService.addPersona(persona).subscribe(() => {
+      //   this.loading = true;
+      //   setTimeout(() => {
+      //     this.loading = false;
+      //     this.dialogRef.close({ submitted: true }); //vai ser enviado para list-persona-componente
+      //   }, 2000);
+      // });
+      console.log(persona);
+      this.personaManagement.addPersona(persona);
+
       this.msgSucess('agregada');
 
       setTimeout(() => {
