@@ -12,7 +12,6 @@ export class PersonaManagement {
     console.log(persona);
     return persona;
   }
-
   deletePersona(id: number): void {
     this.listPersonas = this.listPersonas.filter(
       (persona) => persona.id !== id
@@ -23,5 +22,9 @@ export class PersonaManagement {
   getListPersona(): Persona[] {
     // console.log('hellow getList');
     return this.listPersonas;
+  }
+
+  addPersona(persona: Persona): void {
+    this.listPersonas.push(persona);
   }
 }
