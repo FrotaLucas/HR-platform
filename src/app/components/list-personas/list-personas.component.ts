@@ -132,19 +132,6 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
       console.log('print obtenerPersona');
     }, 2000);
   }
-  // obtenerPersonas() {
-  //   this.loading = true;
-  //   setTimeout(() => {
-  //     this._personaService.getPersonas().subscribe((data) => {
-  //       this.loading = false;
-  //       this.dataSource.data = data;
-  //       this.dataSource.paginator = this.myCustomPaginator;
-  //       this.dataSource.sort = this.myCustomSort;
-  //       console.log('print obtenerPersona');
-  //     });
-  //   }, 2000);
-  // }
-
   applyFilter(event: Event) {
     const filteredValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filteredValue.trim().toLowerCase();
@@ -158,7 +145,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
     const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {
       width: '550px',
       disableClose: true,
-      data: { id: id },
+      data: { id: id, list: this.personaManagement.getListPersona() },
     });
     //com o retorno de dialogRed, podemos rezecutar obtenerPersonas ;)
     dialogRef.afterClosed().subscribe((result) => {
@@ -171,17 +158,9 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
   //funciona o bar loading e settimeout
   //como esse Id esta sendo lido se ele nao esta na tabela ????????
   deletePerson(id: number) {
-    // this._personaService.deletePersona(id).subscribe(() => {
-    //   this.obtenerPersonas();
-    //   this.msgSucess();
-    // });
     console.log('click deleteee');
     this.personaManagement.deletePersona(id);
     this.obtenerPersonas();
-    //console.log(this.personaManagement.getListPersona());
-    //this.dataSource.data = [...this.personaManagement.getListPersona()];
-    // this.dataSource._updateChangeSubscription();
-    // this.cdr.detectChanges();
     this.msgSucess();
   }
 

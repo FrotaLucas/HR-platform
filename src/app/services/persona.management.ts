@@ -7,15 +7,10 @@ export class PersonaManagement {
     this.listPersonas = initialList;
   }
 
-  updatePersona(id: number, updatedPersona: Persona): void {
-    const index = this.listPersonas.findIndex((persona) => persona.id === id);
-
-    if (index !== -1) {
-      this.listPersonas[index] = {
-        ...this.listPersonas[index],
-        ...updatedPersona,
-      };
-    }
+  getPersona(id: number): Persona | undefined {
+    const persona = this.listPersonas.find((x) => x.id === id);
+    console.log(persona);
+    return persona;
   }
 
   deletePersona(id: number): void {
