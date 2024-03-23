@@ -116,7 +116,7 @@ export class AgregarEditarPersonaComponent implements OnInit {
       this.personaManagement.addPersona(persona);
 
       this.msgSucess('agregada');
-
+      // quero testar um commit
       setTimeout(() => {
         console.log(this.myform.value.fechaNacimento);
       }, 1000);
