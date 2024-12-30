@@ -9,6 +9,7 @@ export class PersonaManagement {
 
   getPersona(id: number): Persona | undefined {
     const persona = this.listPersonas.find((x) => x.id === id);
+    console.log('Persona Magement:');
     console.log(persona);
     return persona;
   }
