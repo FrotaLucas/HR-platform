@@ -1,31 +1,45 @@
 import { Persona } from '../interfaces/persona';
+import { Injectable } from '@angular/core';
+import { listDePersonas } from '../shared/list-personas';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class PersonaManagement {
-  private listPersonas: Persona[];
+  private personas: Persona[] = [];
 
-  constructor(initialList: Persona[]) {
-    this.listPersonas = initialList;
+  // para que serve esse setInitialLIst dado que ja tem a inicializacao no constructor
+  setInitialList(personas: Persona[]) {
+    this.personas = personas;
+  }
+  constructor() {
+    this.personas = [...listDePersonas];
   }
 
   getPersona(id: number): Persona | undefined {
-    const persona = this.listPersonas.find((x) => x.id === id);
+    const persona = this.personas.find((x) => x.id === id);
     console.log('Persona Magement:');
     console.log(persona);
     return persona;
   }
   deletePersona(id: number): void {
-    this.listPersonas = this.listPersonas.filter(
-      (persona) => persona.id !== id
-    );
-    console.log(this.listPersonas);
+    this.personas = this.personas.filter((persona) => persona.id !== id);
+    console.log(this.personas);
   }
 
   getListPersona(): Persona[] {
     // console.log('hellow getList');
-    return this.listPersonas;
+    return this.personas;
   }
 
   addPersona(persona: Persona): void {
-    this.listPersonas.push(persona);
+    this.personas.push(persona);
+  }
+
+  updatePersona(id: number, persona: Persona): void {
+    const index = listDePersonas.findIndex((x) => x.id === id);
+    if (index !== -1) {
+      this.personas[index] = persona;
+    }
   }
 }
