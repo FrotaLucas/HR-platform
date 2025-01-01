@@ -57,9 +57,9 @@ const listDePersonas: Persona[] = [
   },
   {
     id: 6,
-    nombre: 'Grazi',
-    apellido: 'Carneiro',
-    correo: 'grazi@hotmail.com',
+    nombre: 'Louis',
+    apellido: 'Fischer',
+    correo: 'fischer@hotmail.com',
     tipoDocumento: 'CNH',
     documento: 1414141,
     fechaNacimento: new Date(),
