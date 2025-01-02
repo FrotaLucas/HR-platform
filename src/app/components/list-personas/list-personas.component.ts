@@ -18,72 +18,8 @@ import { PersonaManagement } from 'src/app/services/persona.management';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from 'rxjs/internal/scheduler/Action';
-
-const listPersonas: Persona[] = [
-  {
-    id: 0,
-    nombre: 'Maria',
-    apellido: 'Loya',
-    correo: 'loyadiasMaria@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 3333333,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 1,
-    nombre: 'Fagner',
-    apellido: 'Melles',
-    correo: 'fafafagner@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 1414141,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 2,
-    nombre: 'Jorge',
-    apellido: 'Paulo',
-    correo: 'jorge@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 1414141,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 3,
-    nombre: 'Iago',
-    apellido: 'Ottilis',
-    correo: 'claudia@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 1414141,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 4,
-    nombre: 'Grazi',
-    apellido: 'Carneiro',
-    correo: 'grazi@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 1414141,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 5,
-    nombre: 'Lucas',
-    apellido: 'Frota',
-    correo: 'frotadiaslucas@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 21212121,
-    fechaNacimento: new Date(),
-  },
-  {
-    id: 6,
-    nombre: 'Grazi',
-    apellido: 'Carneiro',
-    correo: 'grazi@hotmail.com',
-    tipoDocumento: 'CNH',
-    documento: 1414141,
-    fechaNacimento: new Date(),
-  },
-];
+import { listDePersonas } from 'src/app/shared/list-personas';
+import { columnaDePersonas } from 'src/app/shared/columna-personas';
 
 @Component({
   selector: 'app-list-personas',
@@ -91,20 +27,12 @@ const listPersonas: Persona[] = [
   styleUrls: ['./list-personas.component.css'],
 })
 export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
-  displayedColumns: string[] = [
-    'nombre',
-    'apellido',
-    'correo',
-    'tipoDocumento',
-    'documento',
-    'fechaNacimento',
-    'acoes',
-  ];
+  displayedColumns = columnaDePersonas;
   //dataSource: MatTableDataSource<Persona>;
   newmode: ProgressBarMode = 'indeterminate';
   loading: boolean = true;
   dataSource: MatTableDataSource<Persona>;
-  personaManagement: PersonaManagement;
+  //personaManagement: PersonaManagement;
 
   @ViewChild(MatPaginator) myCustomPaginator!: MatPaginator;
   @ViewChild(MatSort) myCustomSort!: MatSort;
@@ -113,14 +41,15 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
     public dialog: MatDialog,
     private _personaService: PersonaService,
     private _snackBar: MatSnackBar, // private cdr: ChangeDetectorRef
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private personaManagement: PersonaManagement
   ) {
-    this.personaManagement = new PersonaManagement(listPersonas);
+    //this.personaManagement = new PersonaManagement();
     this.dataSource = new MatTableDataSource(
       this.personaManagement.getListPersona()
     );
 
-    //this.dataSource = new MatTableDataSource(listPersonas);
+    //this.dataSource = new MatTableDataSource(listDePersonas);
   }
   obtenerPersonas() {
     this.loading = true;
@@ -145,11 +74,13 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
     const dialogRef = this.dialog.open(AgregarEditarPersonaComponent, {
       width: '550px',
       disableClose: true,
-      data: { id: id, list: this.personaManagement.getListPersona() },
+      //data: { id: id, list: this.personaManagement.getListPersona() },
+      data: { id: id },
     });
     //com o retorno de dialogRed, podemos rezecutar obtenerPersonas ;)
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.submitted) {
+        console.log(this.personaManagement.getListPersona());
         this.obtenerPersonas(); //executa depois de fechar
         console.log('The dialog was closed');
       }
@@ -158,7 +89,7 @@ export class ListPersonasComponent implements OnInit, AfterViewInit, OnChanges {
   //funciona o bar loading e settimeout
   //como esse Id esta sendo lido se ele nao esta na tabela ????????
   deletePerson(id: number) {
-    console.log('click deleteee');
+    console.log(id + 'click deleteee');
     this.personaManagement.deletePersona(id);
     this.obtenerPersonas();
     this.msgSucess();
