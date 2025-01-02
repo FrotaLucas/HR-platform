@@ -18,13 +18,14 @@ export class AgregarEditarPersonaComponent implements OnInit {
   loading: boolean = false;
   operation: string = 'Agregar ';
   id: number | undefined;
-  listPersonas: Persona[];
-  personaManagement: PersonaManagement;
+  //listPersonas: Persona[];
+  //personaManagement: PersonaManagement;
+
   constructor(
     public dialogRef: MatDialogRef<AgregarEditarPersonaComponent>,
     private fb: FormBuilder,
     private _personService: PersonaService,
-    //private personaManagement: PersonaManagement,
+    private personaManagement: PersonaManagement,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
@@ -38,8 +39,9 @@ export class AgregarEditarPersonaComponent implements OnInit {
       fechaNacimento: [null, Validators.required],
     });
     this.id = data.id;
-    this.listPersonas = data.list;
-    this.personaManagement = new PersonaManagement(data.list);
+    //this.listPersonas = data.list;
+    //this.personaManagement = new PersonaManagement(data.list);
+    //this.personaManagement = new PersonaManagement();
   }
   ngOnInit(): void {
     this.esEditar(this.id);
@@ -47,6 +49,7 @@ export class AgregarEditarPersonaComponent implements OnInit {
 
   //undefined : novo usuario, number : usuario existente
   esEditar(id: number | undefined) {
+    //so para o caso de usuario existente
     if (id !== undefined) {
       this.operation = 'Editar';
       this.getPersona(id);
@@ -54,7 +57,8 @@ export class AgregarEditarPersonaComponent implements OnInit {
   }
 
   getPersona(id: number) {
-    console.log(this.listPersonas);
+    console.log('function getPersona : ');
+    //console.log(this.listPersonas);
     const persona = this.personaManagement.getPersona(id);
     if (persona !== undefined) {
       this.myform.setValue({
@@ -77,6 +81,7 @@ export class AgregarEditarPersonaComponent implements OnInit {
       duration: 2000,
     });
   }
+  //sendo chamado no html
   addEditPersona() {
     //return nothing in case there is any invalid information
     if (this.myform.invalid) {
@@ -103,6 +108,14 @@ export class AgregarEditarPersonaComponent implements OnInit {
       //     (this.loading = false), this.dialogRef.close({ submitted: true });
       //   }, 2000);
       // });
+
+      this.personaManagement.updatePersona(this.id, persona);
+      this.loading = true;
+      console.log(this.personaManagement.getListPersona());
+      setTimeout(() => {
+        this.loading = true;
+        this.dialogRef.close({ submitted: true });
+      }, 500);
       this.msgSucess('actualizada');
     } else {
       // this._personService.addPersona(persona).subscribe(() => {
@@ -112,12 +125,16 @@ export class AgregarEditarPersonaComponent implements OnInit {
       //     this.dialogRef.close({ submitted: true }); //vai ser enviado para list-persona-componente
       //   }, 2000);
       // });
+      console.log('function addEditPersona: ');
       console.log(persona);
       this.personaManagement.addPersona(persona);
+      console.log(this.personaManagement.getListPersona());
       this.msgSucess('agregada');
       setTimeout(() => {
+        this.loading = false;
+        this.dialogRef.close({ submitted: true });
         console.log(this.myform.value.fechaNacimento);
-      }, 1000);
+      }, 10);
     }
   }
 }
