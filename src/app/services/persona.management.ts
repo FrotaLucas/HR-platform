@@ -33,6 +33,7 @@ export class PersonaManagement {
   }
 
   addPersona(persona: Persona): void {
+    persona.id = this.personas.length;
     this.personas.push(persona);
   }
 
