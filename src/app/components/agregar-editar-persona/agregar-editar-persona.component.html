@@ -8,24 +8,24 @@
     <div class="row">
       <div class="column">
         <mat-form-field>
-          <mat-label>Nombre</mat-label>
-          <input formControlName="nombre" matInput placeholder="Ingrese Nombre" autocomplete="off">
+          <mat-label>Name</mat-label>
+          <input formControlName="nombre" matInput placeholder="Type in name" autocomplete="off">
         </mat-form-field>
         <div class="error">
           <span *ngIf="myform.get('nombre')?.hasError('required') && myform.get('nombre')?.touched ">
-            El nombre es un campo <strong> requerido </strong>
+            Field name is <strong> requerid </strong>
           </span>
         </div>
       </div>
 
       <div class="column">
         <mat-form-field>
-          <mat-label>Apellido</mat-label>
-          <input formControlName="apellido" matInput placeholder="Ingrese Apellido">
+          <mat-label>Surname</mat-label>
+          <input formControlName="apellido" matInput placeholder="Type in surname">
         </mat-form-field>
         <div class="error">
           <span *ngIf="myform.get('apellido')?.hasError('required') && myform.get('apellido')?.touched ">
-            El apellido es un campo <strong> requerido </strong>
+            Field surname is <strong> requerid </strong>
           </span>
         </div>
       </div>
@@ -34,15 +34,15 @@
     <div class="row">
       <div class="column">
         <mat-form-field>
-          <mat-label>Correo</mat-label>
-          <input formControlName="correo" matInput placeholder="Ingrese Correo">
+          <mat-label>E-mail</mat-label>
+          <input formControlName="correo" matInput placeholder="Type in e-mail">
         </mat-form-field>
         <div class="error">
           <span *ngIf="myform.get('correo')?.hasError('required') && myform.get('correo')?.touched ">
-            El correo es un campo <strong> requerido </strong>
+            Field e-mail is <strong> requerid</strong>
           </span>
           <span *ngIf="myform.get('correo')?.hasError('email')">
-            El correo <strong> invalido </strong>
+            E-mail is<strong> invalid </strong>
           </span>
         </div>
       </div>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="column">
         <mat-form-field>
-          <mat-label>TIPO DOCUMENTO</mat-label>
+          <mat-label>TYPE DOCUMENT</mat-label>
           <mat-select formControlName="tipoDocumento">
             <mat-option *ngFor="let item of tipoDocumento" [value]="item">{{item}}</mat-option>
           </mat-select>
@@ -60,11 +60,11 @@
 
       <div class=" column">
         <mat-form-field>
-          <mat-label>DOCUMENTO</mat-label>
-          <input formControlName="documento" matInput placeholder="Ingrese Documento">
+          <mat-label>DOCUMENT</mat-label>
+          <input formControlName="documento" matInput placeholder="Type in Document">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="myform.get('documento')?.hasError('pattern')"> Documento no <strong>valido</strong> </span>
+          <span *ngIf="myform.get('documento')?.hasError('pattern')"> Document no <strong>invalid</strong> </span>
         </div>
       </div>
     </div>
@@ -72,14 +72,14 @@
     <div class="row">
       <div class="column">
         <mat-form-field class="example-full-width">
-          <mat-label>Fecha Nascimento</mat-label>
+          <mat-label>Birthday</mat-label>
           <input [max]="maxDate" formControlName="fechaNacimento" matInput [matDatepicker]="picker">
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
         <div class="error">
           <span *ngIf="myform.get('fechaNacimento')?.hasError('required') && myform.get('fechaNacimento')?.touched ">
-            El fechaNacimento es un campo <strong> requerido </strong>
+            Field birthday is <strong> requerid </strong>
           </span>
         </div>
       </div>
@@ -89,7 +89,7 @@
 
   <mat-dialog-actions align="end">
     <button type="button" (click)="methodCancell()" mat-button>Cancel</button>
-    <button [disabled]="myform.invalid" type="submit" mat-button cdkFocusInitial>Aceptar</button>
+    <button [disabled]="myform.invalid" type="submit" mat-button cdkFocusInitial>Send</button>
   </mat-dialog-actions>
 
 </form>

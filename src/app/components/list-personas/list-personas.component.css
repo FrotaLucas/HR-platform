@@ -19,22 +19,37 @@ mat-toolbar {
   > div {
     background-color: white;
   }
-  
 }
 
-.btnEdit, .btnDelete {
+.btnEdit,
+.btnDelete {
   cursor: pointer;
 }
 
 .btnDelete {
-  color: #E61204;
+  color: #e61204;
 }
 .btn {
   width: 80px;
 }
 
-.container-filter{
+.container-filter {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.colomn-format {
+  text-align: center;
+}
+.email-format {
+  width: 10px !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .mobile-style {
+    display: none;
+    background-color: red !important;
+  }
 }
