@@ -1,27 +1,49 @@
-# CrudRuiz
+# CRUD Application for Employee Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+This project is a **CRUD application** built for managing employee data, allowing you to add, remove, update, and view employees in a company. The application is currently deployed and can be tested with mock data on the following URL:
 
-## Development server
+[Live Application](https://frotalucas.github.io/crud-ruiz/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The API integrations are under development and located in the `crud-ruiz/work-branch`. They will be merged into the main branch soon.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Create**: Add new employees to the company database.
+- **Read**: View a list of all employees.
+- **Update**: Edit details of existing employees.
+- **Delete**: Remove employees from the company records.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular**: Frontend framework for building the UI.
+- **GH-Pages**: For deploying the application on GitHub Pages.
+- **Node.js**: For package management and project setup.
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Getting Started
 
-## Further help
+Follow these steps to set up the project locally:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Clone the Repository
+
+```bash
+git clone https://github.com/FrotaLucas/crud-ruiz.git
+
+### Run the application
+1 cd frontend
+2 npm install
+3 npm run start
+
+### Contact
+**Email: lucas_frota@hotmail.com**
+
+[LinkedIn](https://www.linkedin.com/in/lucas-dias-frota-9020b2126/)
+
+
+
+```
