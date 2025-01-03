@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "predeploy": "ng build --base-href /crud-ruiz",
+    "predeploy": "ng build --base-href /crud-ruiz/",
     "deploy": "gh-pages -d dist/crud-ruiz",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
