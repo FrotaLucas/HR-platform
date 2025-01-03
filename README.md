@@ -31,7 +31,6 @@ Follow these steps to set up the project locally:
 
 ### Clone the Repository
 
-```bash
 git clone https://github.com/FrotaLucas/crud-ruiz.git
 
 ### Run the application
