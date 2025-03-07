@@ -1,6 +1,6 @@
 # CRUD Application for Employee Management
 
-This project is a **CRUD application** built for managing employee data, allowing you to add, remove, update, and view employees in a company. The application is currently deployed and can be tested with mock data on the following URL:
+TThis project is a **CRUD application** built for managing employee data, allowing you to add, remove, update, and view employees in a company. The application is currently deployed and can be tested with mock data on the following URL:
 
 [Live Application](https://frotalucas.github.io/HR-platform/)
 
