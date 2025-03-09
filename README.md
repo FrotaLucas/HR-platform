@@ -31,7 +31,7 @@ Follow these steps to set up the project locally:
 
 ### Clone the Repository
 
-git clone https://github.com/FrotaLucas/crud-ruiz.git
+git clone https://github.com/FrotaLucas/HR-platform.git
 
 ### Run the application
 
@@ -40,8 +40,6 @@ git clone https://github.com/FrotaLucas/crud-ruiz.git
 3 npm run start
 
 ### Contact
-
-**Email: lucas_frota@hotmail.com**
 
 [LinkedIn](https://www.linkedin.com/in/lucas-dias-frota-9020b2126/)
 
