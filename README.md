@@ -35,7 +35,7 @@ git clone https://github.com/FrotaLucas/HR-platform.git
 
 ### Run the application
 
-1 cd frontend
+1 cd HR-platform
 2 npm install
 3 npm run start
 
