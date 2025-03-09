@@ -11,6 +11,7 @@ export class PersonaService {
   private myAppUrl: string;
   private myApiUrl: string;
 
+  //endpoints
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/personas/';
