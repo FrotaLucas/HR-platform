@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "predeploy": "ng build --base-href /HR-platform/",
-    "deploy": "gh-pages -d dist/crud-ruiz",
+    "deploy": "gh-pages -d dist/crud",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
