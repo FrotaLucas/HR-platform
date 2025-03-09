@@ -1,12 +1,12 @@
 {
-  "homepage": "https://frotalucas.github.io/crud-ruiz/",
+  "homepage": "https://frotalucas.github.io/HR-platform/",
   "name": "crud-ruiz",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "predeploy": "ng build --base-href /crud-ruiz/",
+    "predeploy": "ng build --base-href /HR-platform/",
     "deploy": "gh-pages -d dist/crud-ruiz",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
