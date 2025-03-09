@@ -4,7 +4,7 @@ This project is a **CRUD application** built for managing employee data, allowin
 
 [Live Application](https://frotalucas.github.io/HR-platform/)
 
-The API integrations are under development and located in the `crud-ruiz/work-branch`. They will be merged into the main branch soon.
+The API integrations are under development and located in the `crud/work-branch`. They will be merged into the main branch soon.
 
 ---
 
